@@ -11,7 +11,7 @@ const BASE_URL = `https://www.googleapis.com/blogger/v3/blogs/${BLOG_ID}/posts`;
  * @param {string|null} label     - Filter by label/tag
  * @param {number}      maxResults
  */
-export async function fetchPosts({ pageToken = null, label = null, maxResults = 12 } = {}) {
+export async function fetchPosts({ pageToken = null, label = null, maxResults = 10 } = {}) {
   const params = new URLSearchParams({
     key: API_KEY,
     maxResults: String(maxResults),

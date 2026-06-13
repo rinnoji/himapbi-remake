@@ -15,7 +15,7 @@ export function usePosts() {
     setError(null);
     try {
       const token = reset ? null : nextPageToken;
-      const data = await fetchPosts({ pageToken: token, label, maxResults: 12 });
+      const data = await fetchPosts({ pageToken: token, label, maxResults: 10 });
       const newPosts = data.items || [];
 
       setPosts(prev => reset ? newPosts : [...prev, ...newPosts]);
