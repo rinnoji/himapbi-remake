@@ -1,0 +1,466 @@
+@import "tailwindcss";
+
+/* ===================================================
+   ARTHAVISTARA NIRVATA — DESIGN SYSTEM
+   HIMA PBI UNISSULA
+   Palette: Soft Rose · Blush · Mauve · Warm White
+   =================================================== */
+
+@theme {
+  /* --- Color Palette --- */
+  --color-petal-50: #fff5f7;
+  --color-petal-100: #ffe4ea;
+  --color-petal-200: #ffc8d5;
+  --color-petal-300: #ffa0b8;
+  --color-petal-400: #ff6e93;
+  --color-petal-500: #f9436f;
+  --color-petal-600: #e91e52;
+  --color-petal-700: #c4123e;
+  --color-petal-800: #a31337;
+  --color-petal-900: #8b1432;
+
+  --color-rose-blush: #f9b8c9;
+  --color-rose-soft: #f4a0b8;
+  --color-rose-mid: #e88ca8;
+  --color-rose-deep: #c96b8a;
+  --color-rose-dark: #a04e6e;
+
+  --color-lotus-pink: #f5c6d8;
+  --color-lotus-mauve: #d4a0bc;
+  --color-lotus-plum: #9e6b87;
+
+  --color-cream-50: #fefdfb;
+  --color-cream-100: #fdf8f5;
+  --color-cream-200: #f9f0eb;
+  --color-cream-300: #f0e4dc;
+
+  --color-ink-900: #1a0f14;
+  --color-ink-800: #2e1a23;
+  --color-ink-700: #4a2a38;
+
+  /* --- Typography --- */
+  --font-serif: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+  --font-display: 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+
+  /* --- Spacing / Radius --- */
+  --radius-card: 1.25rem;
+  --radius-pill: 9999px;
+
+  /* --- Shadows --- */
+  --shadow-card: 0 4px 32px 0 rgba(233, 148, 184, 0.10), 0 1px 6px 0 rgba(200, 100, 140, 0.08);
+  --shadow-card-hover: 0 16px 48px 0 rgba(233, 148, 184, 0.22), 0 4px 16px 0 rgba(200, 100, 140, 0.15);
+  --shadow-glow: 0 0 40px 0 rgba(245, 198, 216, 0.35);
+}
+
+/* ===================================================
+   GLOBAL BASE STYLES
+   =================================================== */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-cream-50);
+  color: var(--color-ink-800);
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* --- Noise / grain texture overlay --- */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.4;
+}
+
+/* ===================================================
+   SCROLLBAR STYLING
+   =================================================== */
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--color-cream-100); }
+::-webkit-scrollbar-thumb {
+  background: var(--color-lotus-pink);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover { background: var(--color-rose-mid); }
+
+/* ===================================================
+   SELECTION
+   =================================================== */
+
+::selection {
+  background-color: var(--color-lotus-pink);
+  color: var(--color-ink-800);
+}
+
+/* ===================================================
+   TYPOGRAPHY UTILITIES
+   =================================================== */
+
+.font-serif { font-family: var(--font-serif); }
+.font-display { font-family: var(--font-display); }
+.font-sans { font-family: var(--font-sans); }
+
+/* ===================================================
+   GRADIENT BACKGROUNDS
+   =================================================== */
+
+.bg-petal-gradient {
+  background: linear-gradient(135deg, #fff0f5 0%, #fce4ee 40%, #f5d0e3 100%);
+}
+
+.bg-hero-gradient {
+  background: linear-gradient(
+    160deg,
+    #fff5f8 0%,
+    #fce8f0 30%,
+    #f5d5e8 60%,
+    #edd0e2 100%
+  );
+}
+
+.bg-card-gradient {
+  background: linear-gradient(145deg, rgba(255,255,255,0.95) 0%, rgba(253,240,247,0.90) 100%);
+}
+
+.bg-footer-gradient {
+  background: linear-gradient(160deg, #2e1a23 0%, #4a2a38 50%, #3d2030 100%);
+}
+
+/* ===================================================
+   GLASSMORPHISM CARD
+   =================================================== */
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border: 1px solid rgba(245, 198, 216, 0.4);
+  box-shadow: var(--shadow-card);
+}
+
+.glass-card:hover {
+  box-shadow: var(--shadow-card-hover);
+  border-color: rgba(233, 140, 168, 0.55);
+}
+
+/* ===================================================
+   NAVBAR GLASS
+   =================================================== */
+
+.navbar-glass {
+  background: rgba(255, 250, 253, 0.88);
+  backdrop-filter: blur(20px) saturate(200%);
+  -webkit-backdrop-filter: blur(20px) saturate(200%);
+  border-bottom: 1px solid rgba(245, 198, 216, 0.30);
+}
+
+/* ===================================================
+   BUTTONS
+   =================================================== */
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1.5rem;
+  background: linear-gradient(135deg, #f5a0bc 0%, #e88ca8 100%);
+  color: #fff;
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border: none;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 4px 18px rgba(233, 140, 168, 0.35);
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #e88ca8 0%, #d4769c 100%);
+  box-shadow: 0 8px 28px rgba(233, 140, 168, 0.5);
+  transform: translateY(-1px);
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1.25rem;
+  background: transparent;
+  color: var(--color-rose-deep);
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  border: 1.5px solid var(--color-lotus-pink);
+  border-radius: 9999px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.btn-ghost:hover {
+  background: var(--color-petal-50);
+  border-color: var(--color-rose-mid);
+  color: var(--color-rose-dark);
+}
+
+/* ===================================================
+   TAG PILLS
+   =================================================== */
+
+.tag-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.3rem 0.85rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1.5px solid rgba(245, 198, 216, 0.5);
+  background: rgba(255, 255, 255, 0.7);
+  color: var(--color-rose-deep);
+  white-space: nowrap;
+}
+
+.tag-pill:hover, .tag-pill.active {
+  background: linear-gradient(135deg, #f5a0bc, #e88ca8);
+  color: #fff;
+  border-color: transparent;
+  box-shadow: 0 4px 14px rgba(233, 140, 168, 0.3);
+}
+
+/* ===================================================
+   POST CARD HOVER
+   =================================================== */
+
+.post-card {
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+              box-shadow 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.post-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-card-hover);
+}
+
+/* ===================================================
+   LINE CLAMP UTILITIES
+   =================================================== */
+
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-4 {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ===================================================
+   POST BODY (HTML CONTENT FROM BLOGGER)
+   =================================================== */
+
+.post-body {
+  font-family: var(--font-serif);
+  font-size: 1.125rem;
+  line-height: 1.85;
+  color: #2e1a23;
+}
+
+.post-body p {
+  margin-bottom: 1.25em;
+  text-align: justify;
+}
+
+.post-body p:first-child::first-letter {
+  font-size: 3.5rem;
+  font-weight: 600;
+  float: left;
+  line-height: 0.8;
+  margin-right: 0.1em;
+  margin-top: 0.1em;
+  color: var(--color-rose-deep);
+  font-family: var(--font-display);
+}
+
+.post-body i, .post-body em {
+  font-style: italic;
+  color: var(--color-rose-dark);
+}
+
+.post-body b, .post-body strong {
+  font-weight: 700;
+  color: var(--color-ink-800);
+}
+
+.post-body a {
+  color: var(--color-rose-deep);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.post-body img {
+  max-width: 100%;
+  border-radius: 0.75rem;
+  margin: 1.5rem auto;
+  display: block;
+}
+
+/* ===================================================
+   DIVIDER / ORNAMENT
+   =================================================== */
+
+.ornament-divider {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.ornament-divider::before,
+.ornament-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(233, 140, 168, 0.4), transparent);
+}
+
+/* ===================================================
+   SKELETON LOADER
+   =================================================== */
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    rgba(245, 198, 216, 0.15) 25%,
+    rgba(245, 198, 216, 0.35) 50%,
+    rgba(245, 198, 216, 0.15) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.6s ease infinite;
+  border-radius: 0.5rem;
+}
+
+/* ===================================================
+   MODAL BACKDROP & SLIDE
+   =================================================== */
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes slideDown {
+  from { transform: translateY(-20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.animate-fade-in { animation: fadeIn 0.25s ease forwards; }
+.animate-slide-up { animation: slideUp 0.35s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+.animate-slide-down { animation: slideDown 0.25s ease forwards; }
+
+/* ===================================================
+   HERO LOTUS GLOW
+   =================================================== */
+
+@keyframes lotusFloat {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33% { transform: translateY(-10px) rotate(1deg); }
+  66% { transform: translateY(-5px) rotate(-1deg); }
+}
+
+@keyframes petalspin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.lotus-float { animation: lotusFloat 6s ease-in-out infinite; }
+
+/* ===================================================
+   RESPONSIVE GRID LAYOUT
+   =================================================== */
+
+.posts-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  .posts-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .posts-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .posts-grid .featured-card {
+    grid-column: span 2;
+  }
+}
+
+/* ===================================================
+   FOCUS / ACCESSIBILITY
+   =================================================== */
+
+*:focus-visible {
+  outline: 2px solid var(--color-rose-mid);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ===================================================
+   DECORATIVE LOTUS PATTERN (subtle background)
+   =================================================== */
+
+.lotus-bg {
+  background-image: radial-gradient(ellipse at 20% 50%, rgba(245, 198, 216, 0.15) 0%, transparent 60%),
+                    radial-gradient(ellipse at 80% 20%, rgba(212, 160, 188, 0.12) 0%, transparent 50%),
+                    radial-gradient(ellipse at 60% 80%, rgba(245, 198, 216, 0.10) 0%, transparent 50%);
+}
