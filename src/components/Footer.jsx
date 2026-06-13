@@ -181,7 +181,7 @@ export default function Footer({ onAboutRef }) {
               <path d="M12 2a7 7 0 0 1 7 7 7 7 0 0 1-1.5 4.33L21 17l-2 2-3.67-3.5A7 7 0 0 1 5 9a7 7 0 0 1 7-7z"/>
             </svg>
             <p className="font-sans text-xs" style={{ color: 'rgba(255,255,255,0.35)' }}>
-              © {currentYear} HIMA PBI UNISSULA · Arthavistara Nirvata Cabinet
+              © {currentYear} HIMA PBI UNISSULA · Arthavistara Nirvata Cabinet · Dibuat oleh Luiy
             </p>
           </div>
           <p className="font-sans text-xs" style={{ color: 'rgba(255,255,255,0.25)' }}>
