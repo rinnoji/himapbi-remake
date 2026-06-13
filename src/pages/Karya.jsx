@@ -8,7 +8,7 @@ import SearchModal from '../components/SearchModal';
 import { usePosts } from '../hooks/usePosts';
 
 export default function Karya() {
-  const { posts, loading, error, hasMore, loadPosts, filterByLabel } = usePosts();
+  const { posts, loading, error, hasMore, currentPage, totalPages, goToNextPage, goToPrevPage, goToPage, loadPosts, filterByLabel } = usePosts();
   const [selectedPost, setSelectedPost] = useState(null);
   const [searchOpen, setSearchOpen] = useState(false);
   const [activeTag, setActiveTag] = useState('All');
@@ -25,7 +25,7 @@ export default function Karya() {
     };
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [loadPosts]);
+  }, []);
 
   const handleTagChange = useCallback((tag) => {
     setActiveTag(tag);
@@ -106,7 +106,11 @@ export default function Karya() {
           posts={posts}
           loading={loading}
           hasMore={hasMore}
-          onLoadMore={() => loadPosts()}
+          currentPage={currentPage}
+          totalPages={totalPages}
+          goToNextPage={goToNextPage}
+          goToPrevPage={goToPrevPage}
+          goToPage={goToPage}
           onPostClick={setSelectedPost}
         />
       </main>
