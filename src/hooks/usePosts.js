@@ -10,12 +10,13 @@ export function usePosts() {
   const [hasMore, setHasMore] = useState(true);
   const [activeLabel, setActiveLabel] = useState(null);
 
-  const loadPosts = useCallback(async ({ reset = false, label = null } = {}) => {
+  const loadPosts = useCallback(async ({ reset = false, label } = {}) => {
     setLoading(true);
     setError(null);
     try {
       const token = reset ? null : nextPageToken;
-      const data = await fetchPosts({ pageToken: token, label, maxResults: 10 });
+      const fetchLabel = label !== undefined ? label : activeLabel;
+      const data = await fetchPosts({ pageToken: token, label: fetchLabel, maxResults: 10 });
       const newPosts = data.items || [];
 
       setPosts(prev => reset ? newPosts : [...prev, ...newPosts]);
@@ -26,7 +27,7 @@ export function usePosts() {
     } finally {
       setLoading(false);
     }
-  }, [nextPageToken]);
+  }, [nextPageToken, activeLabel]);
 
   const filterByLabel = useCallback((label) => {
     const newLabel = label === 'All' ? null : label;
